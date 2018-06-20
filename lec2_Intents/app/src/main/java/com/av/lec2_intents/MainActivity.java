@@ -82,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     Intent i = new Intent();
-//                    i.setAction("myOwnAction");
-//                    i.putExtra("msg", "this is the text");
-//                    i.setData(Uri.parse("this is the text"));
+                    i.setAction("myOwnAction");
+                    i.putExtra("msg", "this is the text");
+                    // Dont set data like this : It will give IntentNotFound error
+                    // Since URI are also checked in manifest file
+                    //i.setData(Uri.parse("this is the text"));
                     startActivity(i);
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "No Intent Found", Toast.LENGTH_SHORT).show();

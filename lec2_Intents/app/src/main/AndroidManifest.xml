@@ -25,6 +25,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".NewActionActivity">
+            <intent-filter>
+                <action android:name="myOwnAction" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
