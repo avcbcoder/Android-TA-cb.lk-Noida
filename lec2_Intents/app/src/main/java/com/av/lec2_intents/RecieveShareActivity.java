@@ -1,16 +1,32 @@
 package com.av.lec2_intents;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+
 public class RecieveShareActivity extends AppCompatActivity {
+    public static final String TAG = "RecieveShareActivity";
+    public static Context context;
+    private ImageView setRecievedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve_share);
+
+        context = this;
+
+        setRecievedImage = findViewById(R.id.rsa_iv);
 
         Intent i = getIntent();
         String action = i.getAction();
@@ -38,8 +54,11 @@ public class RecieveShareActivity extends AppCompatActivity {
     }
 
     private void imageRecieved(Intent i) {
+        Log.e(TAG, "imageRecieved: " + i.getData().toString());
     }
 
     private void textRecieved(Intent i) {
     }
+
+
 }
