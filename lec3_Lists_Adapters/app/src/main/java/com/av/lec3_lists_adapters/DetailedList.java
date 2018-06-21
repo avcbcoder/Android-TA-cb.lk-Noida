@@ -31,6 +31,9 @@ public class DetailedList extends AppCompatActivity {
 
     public class CustomAdapter extends BaseAdapter {
 
+        View[] allViews = new View[al.size() + 10];
+        boolean[] visit = new boolean[al.size() + 10];
+
         @Override
         public int getCount() {
             return al.size();
@@ -50,11 +53,35 @@ public class DetailedList extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup parent) {
             // It is working here since we have access to context
             // If we will make another custom adapter which is not inner class then we will have to pass
-            // context and then get context.getLayoutInflator();
+            // context,arraylist and then get context.getLayoutInflator();
             LayoutInflater li = getLayoutInflater();
             // We can do this too
             //li=(LayoutInflater)( getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE));
-            View itemView = li.inflate(R.layout.student_item, parent, false);
+            View itemView;
+
+            /* Method 1 -----------------
+            if (visit[ i]) {
+                itemView = allViews[i];
+            } else {
+                itemView = li.inflate(R.layout.student_item, parent, false);
+                allViews[i] = itemView;
+                visit[i] = true;
+            }
+            */
+
+            /* Method 2------------------
+            if(view==null){
+                itemView = li.inflate(R.layout.student_item, parent, false);
+            }else{
+                itemView=view;
+            }
+            */
+
+            /* Method 3-----------------
+            It takes a lot of time since it inflates view each time
+             */
+            itemView = li.inflate(R.layout.student_item, parent, false);
+
             TextView tvName = (TextView) itemView.findViewById(R.id.tvName);
             TextView tvAge = (TextView) itemView.findViewById(R.id.tvAge);
             TextView tvMarks = (TextView) itemView.findViewById(R.id.tvMarks);
