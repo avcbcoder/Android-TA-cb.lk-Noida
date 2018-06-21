@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.net.URL;
 
@@ -23,12 +24,16 @@ public class MainActivity extends AppCompatActivity {
     Button btn, intent, chooser;
     WebView wv;
     LinearLayout ll;
+    Toolbar mtool;
     public static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mtool = findViewById(R.id.chrome_toolbar);
+        setActionBar(mtool);
 
         //Find view by ids
         chooser = findViewById(R.id.ma_chooser);
