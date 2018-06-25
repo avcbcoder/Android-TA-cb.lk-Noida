@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class DetailedList extends AppCompatActivity {
@@ -70,28 +72,44 @@ public class DetailedList extends AppCompatActivity {
             */
 
             /* Method 2------------------
-            if(view==null){
-                itemView = li.inflate(R.layout.student_item, parent, false);
-            }else{
-                itemView=view;
-            }
             */
+            ViewHolder vh;
+            if (view == null) {
+                itemView = li.inflate(R.layout.student_item, parent, false);
+                vh = new ViewHolder();
+                vh.tvName = (TextView) itemView.findViewById(R.id.tvName);
+                vh.tvAge = (TextView) itemView.findViewById(R.id.tvAge);
+                vh.tvMarks = (TextView) itemView.findViewById(R.id.tvMarks);
+                itemView.setTag(vh);
+            } else {
+                itemView = view;
+                vh = (ViewHolder) itemView.getTag();
+            }
+
 
             /* Method 3-----------------
             It takes a lot of time since it inflates view each time
-             */
             itemView = li.inflate(R.layout.student_item, parent, false);
+            */
 
-            TextView tvName = (TextView) itemView.findViewById(R.id.tvName);
-            TextView tvAge = (TextView) itemView.findViewById(R.id.tvAge);
-            TextView tvMarks = (TextView) itemView.findViewById(R.id.tvMarks);
+//            TextView tvName = (TextView) itemView.findViewById(R.id.tvName);
+//            TextView tvAge = (TextView) itemView.findViewById(R.id.tvAge);
+//            TextView tvMarks = (TextView) itemView.findViewById(R.id.tvMarks);
             Student curr = getItem(i);
-            tvName.setText(curr.getName() + "");
-            tvAge.setText(curr.getAge() + "");
-            tvMarks.setText(curr.getMarks() + "");
+            vh.tvName.setText(curr.getName() + "");
+            vh.tvAge.setText(curr.getAge() + "");
+            vh.tvMarks.setText(curr.getMarks() + "");
+//            tvName.setText(curr.getName() + "");
+//            tvAge.setText(curr.getAge() + "");
+//            tvMarks.setText(curr.getMarks() + "");
+
             return itemView;
             // parent is viewgroup => It is used to save some CPU time , already calculated width & height
             // is used in case of viewgroup
         }
+    }
+
+    public class ViewHolder {
+        TextView tvName, tvAge, tvMarks;
     }
 }

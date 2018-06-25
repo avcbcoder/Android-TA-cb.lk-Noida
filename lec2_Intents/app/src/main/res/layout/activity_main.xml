@@ -5,12 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.av.lec2_intents.MainActivity">
-    <include
-        android:id="@+id/include"
-        layout="@layout/chrome_toolbar" />
 
     <LinearLayout
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

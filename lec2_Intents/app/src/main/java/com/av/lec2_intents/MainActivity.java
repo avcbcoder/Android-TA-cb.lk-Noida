@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mtool = findViewById(R.id.chrome_toolbar);
-        setActionBar(mtool);
-
         //Find view by ids
         chooser = findViewById(R.id.ma_chooser);
         et = findViewById(R.id.ma_et);
