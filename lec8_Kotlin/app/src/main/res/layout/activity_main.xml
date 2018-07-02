@@ -8,7 +8,7 @@
     tools:context="com.av.lec8_kotlin.MainActivity">
 
     <Button
-        android:id="@+id/textview"
+        android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"

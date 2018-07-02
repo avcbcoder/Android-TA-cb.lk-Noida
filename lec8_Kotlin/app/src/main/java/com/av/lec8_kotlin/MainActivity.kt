@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,10 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val lv = listview // No need of find view by id
+        val lv: ListView = listview // No need of find view by id
 
-        var al = ArrayList<String>()
+        var al: ArrayList<String> = ArrayList<String>()
         populate(al)
+
 
         val adapter = ArrayAdapter<String>(
                 this,
@@ -30,32 +30,28 @@ class MainActivity : AppCompatActivity() {
 
         // Can be done in one line
 
-        val textV = textview
+        val button = btn
 
 
-//        // 1st method
+        // 1st method
 //        var ocl = object : View.OnClickListener {
 //            override fun onClick(v: View?) {
 //            Log("1st")
 //            }
 //        }
 //
-//        textV.setOnClickListener(ocl)
+//        button.setOnClickListener(ocl)
 //
 //        // 2nd method
-//        textV.setOnClickListener(object : View.OnClickListener {
+//        button.setOnClickListener(object : View.OnClickListener {
 //            override fun onClick(v: View?) {
 //                Log("2nd")
 //            }
 //        })
 //
 //        // 3rd Method
-//        textV.setOnClickListener({ v: View -> toast("3rd Method") })
+        btn.setOnClickListener() { v: View -> Log("hello") }
 
-        //4th Method
-        textV.setOnClickListener() {
-            Log("OneLine")
-        }
     }
 
     private fun populate(al: ArrayList<String>) {
