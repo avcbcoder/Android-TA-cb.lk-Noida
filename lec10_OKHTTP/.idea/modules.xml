@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lec9_JSON_to_JAVA.iml" filepath="$PROJECT_DIR$/lec9_JSON_to_JAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lec10_OKHTTP.iml" filepath="$PROJECT_DIR$/lec10_OKHTTP.iml" />
     </modules>
   </component>
 </project>
