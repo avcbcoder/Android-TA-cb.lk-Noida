@@ -10,9 +10,10 @@ import android.widget.Toast;
  * Created by Ankit on 05-07-2018.
  */
 
+// only some specific broadcast receivers works statically(manifest) in oreo&above
 // Dynamic recievers work only when app is running
 // App should be launched once so that this broadcast can be registered in system
-public class MyBroadcastReciever extends BroadcastReceiver { // Static Broadcast
+public class MyBroadcastReceiver extends BroadcastReceiver { // Static Broadcast
     @Override
     public void onReceive(Context context, Intent intent) {
         String s=intent.getAction();
