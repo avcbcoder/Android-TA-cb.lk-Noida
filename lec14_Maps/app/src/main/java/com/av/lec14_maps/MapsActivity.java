@@ -1,6 +1,7 @@
 package com.av.lec14_maps;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,9 +19,17 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    LatLng lastLocation = null;
+    ArrayList<LatLng> allPos = new ArrayList<>();
+    String[] colors = {"#3467ba", "#ff2600", "#ffd000", "#00ff50", "#00edff", "#ff00ee", "#ff0054"};
+    Random r = new Random();
+    int c=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,35 +80,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                .draggable(true)
 //                .position(sydney).title("");
 
-
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").draggable(true));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 2.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10.0f));
 
         LatLng delhi = new LatLng(28.35, 62);
         LatLng antarctica = new LatLng(82.86, 135);
 
-        PolylineOptions polylineOptions = new PolylineOptions().add(sydney, delhi, antarctica);
+        final PolylineOptions polylineOptions = new PolylineOptions().add(sydney, delhi, antarctica);
         PolygonOptions polygonOptions = new PolygonOptions().add(sydney, delhi, antarctica);
         polygonOptions.fillColor(R.color.colorAccent);
-        CircleOptions circleOptions = new CircleOptions().center(sydney).radius(100);
+        CircleOptions circleOptions = new CircleOptions().center(sydney).radius(10000);
 
         //mMap.addPolyline(polylineOptions);
         mMap.addPolygon(polygonOptions);
         mMap.addCircle(circleOptions);
 
+        lastLocation = sydney;
+        allPos.add(lastLocation);
         // Two types of listeners of Marker: OnDrag, OnClick
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
-            public void onMarkerDragStart(Marker marker) {
-                // called when dragging starts
-                LatLng newLatLng = marker.getPosition();
+            public void onMarkerDragStart(Marker marker) {// called when dragging starts
+                //LatLng newLatLng = marker.getPosition();// There will be some shift if we will use this
                 // For getting the name of place of latlng, use google place API
                 MarkerOptions markerOptions = new MarkerOptions()
-                        .position(newLatLng)
-                        .title(marker.getId())
-                        .draggable(true);
+                        .position(lastLocation)
+                        .title(marker.getId());
                 mMap.addMarker(markerOptions);
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newLatLng, 2.0f));
             }
 
             @Override
@@ -110,8 +117,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMarkerDragEnd(Marker marker) {
                 // called when dragging ends
-                LatLng newLatLng = marker.getPosition();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newLatLng, 2.0f));
+//                PolylineOptions polylineOptions1=new PolylineOptions().add(lastLocation,marker.getPosition());
+//                mMap.addPolyline(new PolylineOptions().add(lastLocation, marker.getPosition()));
+                lastLocation = marker.getPosition();
+                for (LatLng pos : allPos)
+                    mMap.addPolyline(new PolylineOptions().color(Color.parseColor(colors[c])).add(pos, marker.getPosition()));
+                allPos.add(marker.getPosition());
+                c++;
+                c%=colors.length;
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLocation, 10.0f));
             }
         });
     }
