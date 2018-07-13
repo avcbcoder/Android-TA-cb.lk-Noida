@@ -73,7 +73,7 @@ public class TaskDB extends SQLiteOpenHelper {
         Cursor c = getReadableDatabase().query(TABLE_NAME,
                 projection,
                 null,
-                null,
+                null,//like if conditions
                 null,
                 null,
                 null);
