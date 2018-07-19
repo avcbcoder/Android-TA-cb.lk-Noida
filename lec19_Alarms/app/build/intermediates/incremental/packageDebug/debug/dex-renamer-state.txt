@@ -1,0 +1,4 @@
+#Thu Jul 19 17:18:30 IST 2018
+base.0=C\:\\Users\\Ankit\\Android cb.lk Noida\\lec19_Alarms\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
